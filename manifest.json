@@ -1,0 +1,25 @@
+{
+  "short_name": "भंडारा Finder",
+  "name": "भंडारा Finder — सेवा का मंच",
+  "description": "अपने पास के भंडारे, लंगर और प्रसाद वितरण खोजें।",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#F4811F",
+  "orientation": "portrait",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icon-192.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}

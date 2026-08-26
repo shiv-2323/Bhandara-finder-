@@ -1,0 +1,6 @@
+{
+  "name": "Bhandara Finder",
+  "description": "A community platform to discover, list, and manage Bhandaras, Langars, and Prasad distribution with live status, interactive maps, volunteer board, ratings, and Hindi/English language support.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

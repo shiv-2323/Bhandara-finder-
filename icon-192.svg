@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="192" height="192">
+  <rect width="512" height="512" rx="128" fill="#F4811F"/>
+  <circle cx="256" cy="256" r="210" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-opacity="0.3"/>
+  
+  <!-- Steam rays -->
+  <path d="M190 160 C180 120, 210 110, 200 80" fill="none" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round" opacity="0.9"/>
+  <path d="M256 150 C246 110, 276 100, 266 70" fill="none" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round" opacity="0.9"/>
+  <path d="M322 160 C312 120, 342 110, 332 80" fill="none" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round" opacity="0.9"/>
+
+  <!-- Bowl / Handi -->
+  <path d="M112 220 H400 L370 380 C360 410, 310 430, 256 430 C202 430, 152 410, 142 380 Z" fill="#FFFFFF"/>
+  <path d="M96 200 H416 C426 200, 432 208, 432 216 C432 224, 426 232, 416 232 H96 C86 232, 80 224, 80 216 C80 208, 86 200, 96 200 Z" fill="#FFE0B2"/>
+
+  <!-- Tilak decoration on bowl -->
+  <path d="M256 260 L276 310 H236 Z" fill="#F4811F"/>
+  <circle cx="256" cy="330" r="8" fill="#D84315"/>
+</svg>

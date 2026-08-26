@@ -1,0 +1,112 @@
+{
+  "entities": {
+    "bhandaras": {
+      "title": "Bhandara Events",
+      "description": "Active bhandaras, langars, and food distribution events",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "organizer": { "type": "string" },
+        "organizerType": { "type": "string" },
+        "phone": { "type": "string" },
+        "location": { "type": "string" },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "mapLink": { "type": "string" },
+        "category": { "type": "string" },
+        "date": { "type": "string" },
+        "isRecurring": { "type": "boolean" },
+        "recurrenceFrequency": { "type": "string" },
+        "startTime": { "type": "string" },
+        "endTime": { "type": "string" },
+        "food": { "type": "string" },
+        "description": { "type": "string" },
+        "featured": { "type": "boolean" },
+        "imageURLs": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "statusOverride": { "type": "string" },
+        "estimatedMeals": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "ratingAvg": { "type": "number" },
+        "ratingCount": { "type": "number" },
+        "isVerified": { "type": "boolean" }
+      },
+      "required": ["id", "name", "location", "category", "date"]
+    },
+    "trash_bhandaras": {
+      "title": "Trash Bhandaras",
+      "description": "Deleted or archived bhandaras",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "location": { "type": "string" },
+        "category": { "type": "string" },
+        "date": { "type": "string" }
+      }
+    },
+    "reviews": {
+      "title": "Reviews",
+      "description": "User reviews and ratings for bhandaras",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "bhandaraId": { "type": "string" },
+        "userName": { "type": "string" },
+        "rating": { "type": "number" },
+        "comment": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "bhandaraId", "rating"]
+    },
+    "volunteers": {
+      "title": "Volunteers",
+      "description": "Registered volunteer applications",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "bhandaraId": { "type": "string" },
+        "bhandaraName": { "type": "string" },
+        "volunteerName": { "type": "string" },
+        "phone": { "type": "string" },
+        "role": { "type": "string" },
+        "notes": { "type": "string" },
+        "createdAt": { "type": "string" }
+      }
+    },
+    "needs": {
+      "title": "In Kind Needs",
+      "description": "Ration, grocery, or volunteer needs for bhandaras",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "bhandaraId": { "type": "string" },
+        "bhandaraName": { "type": "string" },
+        "item": { "type": "string" },
+        "quantity": { "type": "string" },
+        "urgency": { "type": "string" },
+        "contactName": { "type": "string" },
+        "contactPhone": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      }
+    },
+    "reports": {
+      "title": "Flag Reports",
+      "description": "User reported issues on bhandara events",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "bhandaraId": { "type": "string" },
+        "bhandaraName": { "type": "string" },
+        "reason": { "type": "string" },
+        "details": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "status": { "type": "string" }
+      }
+    }
+  }
+}
