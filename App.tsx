@@ -40,6 +40,7 @@ import {
   addReportToFirestore,
   resolveReportInFirestore,
   deleteReportedBhandara,
+  sanitizeBhandaraImages,
 } from './services/firestoreService';
 
 // Components
@@ -91,10 +92,10 @@ export default function App() {
       const saved = localStorage.getItem('bh_events_v2');
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (parsed && parsed.length > 0) return parsed;
+        if (parsed && parsed.length > 0) return parsed.map(sanitizeBhandaraImages);
       }
     } catch {}
-    return INITIAL_BHANDARAS;
+    return INITIAL_BHANDARAS.map(sanitizeBhandaraImages);
   });
 
   const [trashBhandaras, setTrashBhandaras] = useState<BhandaraEvent[]>(() => {

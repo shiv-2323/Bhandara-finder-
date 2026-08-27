@@ -62,6 +62,37 @@ function sanitizeDoc<T extends object>(data: T): T {
   return cleanObj as T;
 }
 
+// Helper to normalize and ensure authentic Indian Bhandara / Prasad photos
+export function sanitizeBhandaraImages(event: BhandaraEvent): BhandaraEvent {
+  const authenticPhotos = [
+    'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=800&q=80', // Poori Sabji Bhandara Thali
+    'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80', // Samosa / Kachori Prasad
+    'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80', // Dal Tadka & Rice Thali
+    'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=800&q=80', // Langar / Pulao Prasad
+    'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?w=800&q=80', // Halwa & Sweets Prasad
+  ];
+
+  if (!event.imageURLs || event.imageURLs.length === 0) {
+    return { ...event, imageURLs: [authenticPhotos[0]] };
+  }
+
+  const cleanedURLs = event.imageURLs.map((url, idx) => {
+    if (
+      url.includes('photo-1555939594-58d7cb561ad1') ||
+      url.includes('photo-1565557623262-b51c2513a641') ||
+      url.includes('photo-1505253716362-afaea1d3d1af')
+    ) {
+      return authenticPhotos[idx % authenticPhotos.length];
+    }
+    return url;
+  });
+
+  return {
+    ...event,
+    imageURLs: cleanedURLs,
+  };
+}
+
 // 1. Subscribe to Collections in Real Time
 export function subscribeToBhandaras(
   callback: (data: BhandaraEvent[]) => void,
@@ -72,11 +103,12 @@ export function subscribeToBhandaras(
     (snapshot) => {
       const items: BhandaraEvent[] = [];
       snapshot.forEach((docSnap) => {
-        items.push(docSnap.data() as BhandaraEvent);
+        const item = sanitizeBhandaraImages(docSnap.data() as BhandaraEvent);
+        items.push(item);
       });
       items.sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime());
       if (items.length === 0 && fallbackData && fallbackData.length > 0) {
-        callback(fallbackData);
+        callback(fallbackData.map(sanitizeBhandaraImages));
       } else {
         callback(items);
       }
@@ -84,7 +116,7 @@ export function subscribeToBhandaras(
     (err) => {
       handleFirestoreError(err, OperationType.LIST, 'bhandaras');
       if (fallbackData && fallbackData.length > 0) {
-        callback(fallbackData);
+        callback(fallbackData.map(sanitizeBhandaraImages));
       }
     }
   );
@@ -199,10 +231,25 @@ export async function seedInitialFirestoreData(
 ) {
   try {
     const bhandarasSnap = await getDocs(collection(db, 'bhandaras'));
-    const existingBhandaraIds = new Set(bhandarasSnap.docs.map((d) => d.id));
+    const existingDocsMap = new Map(bhandarasSnap.docs.map((d) => [d.id, d.data() as BhandaraEvent]));
+    
     for (const b of initialBhandaras) {
-      if (!existingBhandaraIds.has(b.id)) {
-        await setDoc(doc(db, 'bhandaras', b.id), sanitizeDoc(b));
+      const sanitized = sanitizeBhandaraImages(b);
+      const existing = existingDocsMap.get(b.id);
+      if (!existing) {
+        await setDoc(doc(db, 'bhandaras', b.id), sanitizeDoc(sanitized));
+      } else {
+        // Check if existing document has old unauthentic photos
+        const hasOldPhotos = (existing.imageURLs || []).some(
+          (u) =>
+            u.includes('photo-1555939594-58d7cb561ad1') ||
+            u.includes('photo-1565557623262-b51c2513a641') ||
+            u.includes('photo-1505253716362-afaea1d3d1af')
+        );
+        if (hasOldPhotos) {
+          const updatedDoc = sanitizeBhandaraImages(existing);
+          await setDoc(doc(db, 'bhandaras', b.id), sanitizeDoc(updatedDoc), { merge: true });
+        }
       }
     }
 

@@ -27,7 +27,7 @@ export const INITIAL_BHANDARAS: BhandaraEvent[] = [
     description: 'प्रतिदिन विशाल भंडारा — सभी श्रद्धालुओं हेतु निःशुल्क भोजन व्यवस्था।',
     featured: true,
     imageURLs: [
-      'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80',
+      'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=800&q=80',
       'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80'
     ],
     statusOverride: 'open',
@@ -89,7 +89,8 @@ export const INITIAL_BHANDARAS: BhandaraEvent[] = [
     description: 'ठाकुर जी का भोग प्रसाद वितरण। सभी वैष्णव जनों हेतु।',
     featured: false,
     imageURLs: [
-      'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=800&q=80'
+      'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80',
+      'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?w=800&q=80'
     ],
     statusOverride: 'auto',
     estimatedMeals: 2000,
@@ -119,7 +120,8 @@ export const INITIAL_BHANDARAS: BhandaraEvent[] = [
     description: 'बाबा विश्वनाथ के पावन परिसर में निःशुल्क सात्विक भोजन क्षेत्र।',
     featured: true,
     imageURLs: [
-      'https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=800&q=80'
+      'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=800&q=80',
+      'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80'
     ],
     statusOverride: 'open',
     estimatedMeals: 5000,
@@ -179,7 +181,7 @@ export const INITIAL_BHANDARAS: BhandaraEvent[] = [
     featured: true,
     imageURLs: [
       'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80',
-      'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80'
+      'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=800&q=80'
     ],
     statusOverride: 'soon',
     estimatedMeals: 6000,
@@ -268,7 +270,8 @@ export const INITIAL_BHANDARAS: BhandaraEvent[] = [
     description: 'बाबा श्याम के एकादशी महाप्रसाद वितरण एवं पदयात्रियों हेतु विश्राम व भोजन व्यवस्था।',
     featured: true,
     imageURLs: [
-      'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=800&q=80'
+      'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80',
+      'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=800&q=80'
     ],
     statusOverride: 'soon',
     estimatedMeals: 10000,
@@ -298,7 +301,7 @@ export const INITIAL_BHANDARAS: BhandaraEvent[] = [
     description: 'प्रत्येक रविवार गरीब व जरूरतमंदों के लिए सम्मानजनक निःशुल्क भोजन सेवा।',
     featured: false,
     imageURLs: [
-      'https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=800&q=80'
+      'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=800&q=80'
     ],
     statusOverride: 'soon',
     estimatedMeals: 3000,

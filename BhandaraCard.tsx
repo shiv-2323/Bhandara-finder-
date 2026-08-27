@@ -156,6 +156,10 @@ ${eventUrl}
               className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
               loading="lazy"
               referrerPolicy="no-referrer"
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).src =
+                  'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=800&q=80';
+              }}
             />
             {bhandara.imageURLs.length > 1 && (
               <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20 bg-black/40 backdrop-blur-md px-2 py-1 rounded-full">

@@ -86,7 +86,7 @@ export const AddBhandaraModal: React.FC<AddBhandaraModalProps> = ({
       setStatusOverride('auto');
       setEstimatedMeals(1000);
       setImageURLs([
-        'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80',
+        'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=800&q=80',
       ]);
     }
   }, [editEvent, isOpen]);
@@ -410,8 +410,38 @@ export const AddBhandaraModal: React.FC<AddBhandaraModalProps> = ({
             {/* Photo URLs Section */}
             <div className="sm:col-span-2 border-t border-[var(--divider)] pt-3">
               <label className="block text-xs font-bold text-[var(--text-muted)] mb-1">
-                📸 {lang === 'hi' ? 'फोटो URL जोड़ें' : 'Add Photo Image URLs'}
+                📸 {lang === 'hi' ? 'भंडारा / प्रसाद फोटो चुनें या URL जोड़ें' : 'Choose Bhandara Photos or Add URL'}
               </label>
+
+              {/* Quick Select Presets */}
+              <div className="mb-2">
+                <span className="text-[11px] text-[var(--text-muted)] font-medium block mb-1.5">
+                  {lang === 'hi' ? 'त्वरित फोटो चुनें (Quick Presets):' : 'Quick Presets:'}
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  {[
+                    { label: '🍲 पूड़ी-सब्जी थाली', url: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=800&q=80' },
+                    { label: '🥣 दाल-चावल लंगर', url: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80' },
+                    { label: '🥟 कचौड़ी-समोसा', url: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80' },
+                    { label: '🍛 पुलाव-कढ़ी', url: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=800&q=80' },
+                    { label: '🍨 हलवा-प्रसाद', url: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?w=800&q=80' },
+                  ].map((preset, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => {
+                        if (!imageURLs.includes(preset.url)) {
+                          setImageURLs([...imageURLs, preset.url]);
+                        }
+                      }}
+                      className="text-xs px-2.5 py-1 bg-[var(--bg-chip)] hover:bg-[#F4811F] hover:text-white border border-[var(--border)] rounded-lg transition-colors font-medium text-[var(--text-body)]"
+                    >
+                      + {preset.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               <div className="flex gap-2 mb-2">
                 <input
                   type="url"
@@ -432,12 +462,12 @@ export const AddBhandaraModal: React.FC<AddBhandaraModalProps> = ({
               {imageURLs.length > 0 && (
                 <div className="flex items-center gap-2 overflow-x-auto py-2">
                   {imageURLs.map((url, i) => (
-                    <div key={i} className="relative w-16 h-16 rounded-lg overflow-hidden border border-[var(--border)] shrink-0">
+                    <div key={i} className="relative w-16 h-16 rounded-lg overflow-hidden border border-[var(--border)] shrink-0 shadow-sm">
                       <img src={url} alt="preview" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                       <button
                         type="button"
                         onClick={() => handleRemoveImage(i)}
-                        className="absolute top-1 right-1 bg-red-600 text-white rounded-full w-4 h-4 text-[10px] flex items-center justify-center"
+                        className="absolute top-1 right-1 bg-red-600 text-white rounded-full w-4 h-4 text-[10px] flex items-center justify-center shadow"
                       >
                         ✕
                       </button>
